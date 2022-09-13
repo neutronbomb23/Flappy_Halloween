@@ -10,42 +10,45 @@ public class ParalaxScroller : MonoBehaviour
     /// </summary>
     [SerializeField]
     private float _scrollSpeed;
-    #endregion  
+    private Vector2 offset;
+     #endregion
 
-    #region references
-    ///<summary>
-    ///reference to own sprite renderer
-    ///<summary>
-    private SpriteRenderer _mySpriteRenderer;
-    ///<summary>
-    /// Reference to own material
-    ///<summary>
+    #region References
+    /// <summary>
+    /// Reference to own Sprite Renderer
+    /// </summary>
+     private SpriteRenderer _mySpriteRenderer;
+
+    /// <summary>
+    /// Reference to own Material
+    /// </summary>
     private Material _myMaterial;
-    [SerializeField]
-    private float _offset;
-    private Vector2 _vectorPos;
-    private float _newXpos;
+
+    private Transform _myTransform;
     #endregion
 
     #region methods
-    ///<summary>
+    /// <summary>
     /// Disables the component, so the texture movement stops
-    ///<summary>
+    /// </summary>
+    private void Stop()
+    {
+        _mySpriteRenderer.enabled = false;
+    }
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        _vectorPos = transform.position;
-       
-
+        _mySpriteRenderer = GetComponent<SpriteRenderer>();// acceso al SpriteRenderer
+        _myMaterial = GetComponent<SpriteRenderer>().material;// accceso al material
+        _myTransform = GetComponent<Transform>();// acceso al transform
     }
 
     // Update is called once per frame
     void Update()
     {
-        _newXpos = Mathf.Repeat(Time.time * _scrollSpeed, _offset);
-        transform.position = _vectorPos + Vector2.left * _newXpos;
-
+        offset = _scrollSpeed * Time.deltaTime*Vector2.right;
+        _myMaterial.mainTextureOffset += offset;
     }
-
 }
