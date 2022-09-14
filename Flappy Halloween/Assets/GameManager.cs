@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     #region References
     /// <summary>
+    static private GameManager _instance;
+    static public GameManager Instance;
     Vector3 movementDirection = Vector3.zero;
     private InputComponent _myInputComponent;
     /// Reference to player
@@ -49,14 +51,15 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Method to manage finalization of the game
     /// </summary>
-    private void OnPlayerDies()
+    public void OnPlayerDies()
     {
-        //TODO
+        Destroy(gameObject);
     }
     #endregion
     // Start is called before the first frame update
     void Start()
     {
+        _instance = this;
         _myInputComponent = GetComponent<InputComponent>();
     }
 }
