@@ -40,15 +40,16 @@ public class ParalaxScroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _mySpriteRenderer = GetComponent<SpriteRenderer>();// acceso al SpriteRenderer
-        _myMaterial = GetComponent<SpriteRenderer>().material;// accceso al material
-        _myTransform = GetComponent<Transform>();// acceso al transform
+        _myTransform = GetComponent<Transform>();// Transform access
+        _mySpriteRenderer = GetComponent<SpriteRenderer>();// SpriteRenderer access
+        _myMaterial = GetComponent<SpriteRenderer>().material;// Material access
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        offset = _scrollSpeed * Time.deltaTime*Vector2.right;
+        offset = _scrollSpeed * Time.deltaTime*Vector2.right; //Backgroud movement
         _myMaterial.mainTextureOffset += offset;
     }
 }

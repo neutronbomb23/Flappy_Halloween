@@ -5,13 +5,13 @@ using UnityEngine;
 public class LifeComponent : MonoBehaviour
 {
     #region References
-    public GameObject Player;
+    [SerializeField]
+    private GameObject _gameManager;
     #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameManager.Instance.OnPlayerDies();
-        Destroy(gameObject);
     
     }
 

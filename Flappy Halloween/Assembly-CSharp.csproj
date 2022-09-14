@@ -38,7 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\LifeComponent.cs" />
      <Compile Include="Assets\Scripts\MovementComponent.cs" />
-     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\ParalaxScroller.cs" />
      <Compile Include="Assets\Scripts\InputComponent.cs" />
     <Reference Include="UnityEngine">
