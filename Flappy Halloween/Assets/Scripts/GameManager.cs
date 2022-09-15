@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
     #region References
     /// <summary>
     static public GameManager Instance;
-    
+    private UIManager _myUIManager;
     Vector3 movementDirection = Vector3.zero;
     private InputComponent _myInputComponent;
     private MovementComponent _myMovementComponent;
@@ -51,20 +53,25 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("gm");
         _myMovementComponent.Jump();
+
     }
     /// <summary>
     /// Method to manage finalization of the game
     /// </summary>
     public void OnPlayerDies()
     {
+        
         Destroy(_player);
         _myObstaclesGenerator.Stop();
+        _myUIManager.GameOver();
         //gameOverText.gameObject.SetActive(true);
         _isGameRunning = false;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
             GameObject.Destroy(enemy);
-        _myLevelManager.GameOver();
+         //_myLevelManager.GameOver();
+         
+
     }
     #endregion
     // Start is called before the first frame update
@@ -72,8 +79,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         _myInputComponent = GetComponent<InputComponent>();
-        _myMovementComponent = GetComponent<MovementComponent>();
+        _myMovementComponent = _player.GetComponent<MovementComponent>();
         _myObstaclesGenerator = GetComponent<ObstaclesGenerator>();
-        //gameOverText.gameObject.SetActive(false);
+        _myUIManager = GetComponent<UIManager>();
+
+
     }
 }

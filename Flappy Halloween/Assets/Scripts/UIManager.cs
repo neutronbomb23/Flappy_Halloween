@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     #region references
+ 
     /// <summary>
     /// Reference to object containing GameOver text element
     /// </summary>
@@ -13,17 +15,18 @@ public class UIManager : MonoBehaviour
     #endregion
     #region methods
     /// <summary>
-    /// Metrhod callled to activate the GameOver text element
+    /// Method callled to activate the GameOver text element
     /// </summary>
-    private void GameOver()
+    public void GameOver() //Estaba privado
     {
-        //TODO
+        _gameOverObject.gameObject.SetActive(true);
+
     }
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        //TODO
+        _gameOverObject.gameObject.SetActive(false);
     }
 
 }
