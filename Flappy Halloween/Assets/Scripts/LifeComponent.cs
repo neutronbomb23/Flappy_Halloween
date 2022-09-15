@@ -5,6 +5,7 @@ using UnityEngine;
 public class LifeComponent : MonoBehaviour
 {
     #region References
+    /// Reference to Game Manager object
     [SerializeField]
     private GameObject _gameManager;
     #endregion
@@ -12,7 +13,6 @@ public class LifeComponent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameManager.Instance.OnPlayerDies();
-    
     }
 
 }

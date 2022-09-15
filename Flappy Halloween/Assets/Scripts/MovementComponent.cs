@@ -15,7 +15,8 @@ public class MovementComponent : MonoBehaviour
 
     #region methods
     public void Jump(){
-        
+
+        Debug.Log("a");
         _myRigidBody2D.velocity = Vector2.up * _jumpForce;
     }
     #endregion

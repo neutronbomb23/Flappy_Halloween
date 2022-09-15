@@ -5,12 +5,13 @@ public class GameManager : MonoBehaviour
 {
     #region References
     /// <summary>
-    static private GameManager _instance;
     static public GameManager Instance;
     
     Vector3 movementDirection = Vector3.zero;
     private InputComponent _myInputComponent;
     private MovementComponent _myMovementComponent;
+    private ObstaclesGenerator _myObstaclesGenerator;
+    private LevelManager _myLevelManager;
     /// Reference to player
     /// </summary>
     [SerializeField]
@@ -48,21 +49,31 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        
+        Debug.Log("gm");
+        _myMovementComponent.Jump();
     }
     /// <summary>
     /// Method to manage finalization of the game
     /// </summary>
     public void OnPlayerDies()
     {
-       Destroy(gameObject);
+        Destroy(_player);
+        _myObstaclesGenerator.Stop();
+        //gameOverText.gameObject.SetActive(true);
+        _isGameRunning = false;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+            GameObject.Destroy(enemy);
+        _myLevelManager.GameOver();
     }
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        _instance = this;
+        Instance = this;
         _myInputComponent = GetComponent<InputComponent>();
         _myMovementComponent = GetComponent<MovementComponent>();
+        _myObstaclesGenerator = GetComponent<ObstaclesGenerator>();
+        //gameOverText.gameObject.SetActive(false);
     }
 }

@@ -6,9 +6,11 @@ public class InputComponent : MonoBehaviour
     void Update()
     {
         //Movement detection
-        if (Input.GetKeyDown(KeyCode.Space)){
-            SendMessage("Jump",8.0f);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Debug.Log("Se ha pulsado la tecla espaciadora.");
+            //GameManager.Instance.Jump(); // CAMBIAR
+            SendMessage("Jump",8.0f);
         }
     }
 }
