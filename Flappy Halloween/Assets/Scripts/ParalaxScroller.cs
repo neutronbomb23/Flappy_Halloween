@@ -31,7 +31,7 @@ public class ParalaxScroller : MonoBehaviour
     /// <summary>
     /// Disables the component, so the texture movement stops
     /// </summary>
-    private void Stop()
+    public void Stop() // era privado
     {
         _mySpriteRenderer.enabled = false;
     }

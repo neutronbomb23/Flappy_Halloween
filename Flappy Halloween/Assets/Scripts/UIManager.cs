@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     #region references
- 
     /// <summary>
     /// Reference to object containing GameOver text element
     /// </summary>
     [SerializeField]
     private GameObject _gameOverObject;
     #endregion
+
     #region methods
     /// <summary>
     /// Method callled to activate the GameOver text element

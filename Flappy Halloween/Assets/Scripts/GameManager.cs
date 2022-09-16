@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private MovementComponent _myMovementComponent;
     private ObstaclesGenerator _myObstaclesGenerator;
     private LevelManager _myLevelManager;
+    private ParalaxScroller _myParalaxScroller;
     /// Reference to player
     /// </summary>
     [SerializeField]
@@ -60,18 +61,17 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void OnPlayerDies()
     {
-        
-        Destroy(_player);
-        _myObstaclesGenerator.Stop();
-        _myUIManager.GameOver();
-        //gameOverText.gameObject.SetActive(true);
         _isGameRunning = false;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
-            GameObject.Destroy(enemy);
+        GameObject.Destroy(enemy);
+        _myParalaxScroller.Stop();
+        _myObstaclesGenerator.Stop();
+        Destroy(_player);
+        _myUIManager.GameOver();
+        
+            
          //_myLevelManager.GameOver();
-         
-
     }
     #endregion
     // Start is called before the first frame update
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         _myMovementComponent = _player.GetComponent<MovementComponent>();
         _myObstaclesGenerator = GetComponent<ObstaclesGenerator>();
         _myUIManager = GetComponent<UIManager>();
+        _myParalaxScroller = GetComponent<ParalaxScroller>();
 
 
     }
